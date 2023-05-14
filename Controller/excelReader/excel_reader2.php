@@ -94,6 +94,18 @@ function v($data,$pos) {
 
 class OLERead {
 	var $data = '';
+	var $error;
+	var $numBigBlockDepotBlocks;
+	var $sbdStartBlock;
+	var $rootStartBlock;
+	var $extensionBlock;
+	var $numExtensionBlocks;
+	var $bigBlockChain;
+	var $smallBlockChain;
+	var $entry;
+	var $props;
+	var $wrkbook;
+	var $rootentry;
 	function OLERead(){	}
 
 	function read($sFileName){
@@ -542,7 +554,7 @@ class Spreadsheet_Excel_Reader {
 		}
 		return null;
 	}
-	function fontProperty($row,$col,$sheet=0,$prop) {
+	function fontProperty($row,$col,$sheet=0,$prop=0) {
 		$font = $this->fontRecord($row,$col,$sheet);
 		if ($font!=null) {
 			return $font[$prop];
