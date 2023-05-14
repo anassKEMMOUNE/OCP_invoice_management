@@ -62,5 +62,5 @@ CREATE TABLE Facture (
   FOREIGN KEY (idE) REFERENCES Entite(idE)
 );
 
-CREATE INDEX idx_Facture_NombreDeJours ON invoiceDb.Facture(nombreDeJours);
-CREATE INDEX idx_Facture_ContractAdmin ON Facture(contractAdmin);
+CREATE INDEX idx_Facture_NombreDeJours ON invoiceDb.Facture(nombreDeJoursAEcheance);
+CREATE INDEX idx_Facture_ContractAdmin ON Facture(CA);
