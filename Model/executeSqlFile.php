@@ -18,13 +18,14 @@ function executeSqlFile($sqlFile , $withDir = false){
             // Check if there are more results
             if ($result = $conn->store_result()) {
                 // Free the result set
+                $resultStore = $result;
                 $result->free();
             }
         } while ($conn->more_results() && $conn->next_result());
     } else {
         echo "Error executing SQL commands: " . $conn->error;
     }
-    
+    return 
     // Close the MySQL connection
     $conn->close();
 }

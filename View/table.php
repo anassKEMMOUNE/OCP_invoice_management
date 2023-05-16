@@ -36,7 +36,6 @@
                                     <button style="width: 70px" type="submit" class="btn bg-primary text-light">Search</button>
                                 </form>
                             </div>
-                            <div><a href="#" class="btn bg-success pull-right" style="color:#eeeee4; margin-left: 40px"><i class="fa fa-plus"></i> Add Row</a></div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +78,7 @@
         if($statement->execute()){
             $result = $statement->get_result();
             if($result->num_rows > 0){
-                echo '<table class="table table-bordered table-striped">';
+                echo '<table class="table table-bordered table-striped table_DB">';
                     echo "<thead>";
                         echo "<tr>";
                             echo "<th>numCommande</th>";
@@ -129,34 +128,7 @@
                             echo "<td>" . $row['nombreDeJoursAEcheance'] . "</td>";
                             echo "<td>" . $row['cA'] . "</td>";
                             echo "<td>" . $row['blocage'] . "</td>";
-                            echo "<td>";
-                                echo '<a href="ingredient-details.php?page='.$currentPage.'&identifiantGED='. $row['identifiantGED'] .'" class="mr-3" title="View facture Details" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                echo '<a class="m-3" href="ingredient-update.php?page='.$currentPage.'&identifiantGED='. $row['identifiantGED'] .'" class="mr-3" title="Update row" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                echo '<a href="" data-toggle="modal" data-target="#exampleModal" title="Delete row"><span class="fa fa-trash"></span></a>';
-                                ?>
-
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            <?php
-                            echo "</td>";
+                 
                         echo "</tr>";
                     }
                     echo "</tbody>";                            

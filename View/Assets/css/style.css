@@ -50,6 +50,10 @@ position: relative;
 background-color: var(--nav-color);
 transition: width 0.2s;
 flex-shrink: 0;
+display:flex;
+flex-direction: column;
+flex-wrap: initial;
+height: 100%;
 }
 
 .nav--collapsed {
@@ -120,7 +124,10 @@ i, span {
 }
 
 .main_block {
-    width : 100%;
+    width : 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
 }
 
 .upload_form {
@@ -132,10 +139,10 @@ i, span {
     padding: 10px;
     border-radius: 20px;
     border-color: var(--nav-color);
-    width: 80%;
-    height: 20%;
+    width: 700px;
+    height: 200px;
     margin-left: 10%;
-    margin-top: 7%;
+    margin-top: 15px;
     box-shadow: 5px 10px var(--var-color-shadow);
 
 }
@@ -200,4 +207,12 @@ input[type="file"] {
 
 #fileToUpload::-webkit-file-upload-button:hover, #fileToUpload2::-webkit-file-upload-button:hover {
     background-color: var(--nav-on-light);
+}
+.table_DB{
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap
 }
