@@ -12,10 +12,12 @@
     --nav-color-white:#fff;
     --var-color-shadow: #c6c6c6;
 }
+
 @font-face {
     font-family:'Roboto';
     src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
 }
+
 html,
 body {
 height: 100%;
@@ -23,9 +25,11 @@ margin: 0;
 font-family: sans-serif;
 background-color:var(--nav-color-white) ;
 }
+
 .flex{
     display: flex;
 }
+
 .page-container {
 height: inherit;
 display: flex;
@@ -97,6 +101,7 @@ background-color: var(--nav-hover-color);
 i, span {
     color: var(--nav-icons);
 }
+
 .nav__link.active .nav__icon-container i,
 .nav__link.active .nav__label {
   color: var(--nav-on);
@@ -139,7 +144,6 @@ i, span {
     text-align: center;
 }
 
-
 label {
     font-weight: bold;
     margin-right: 10px;
@@ -159,6 +163,7 @@ input[type="submit"] {
     width: 110px;
     margin: auto;
 }
+
 .nav_dashboard{
     margin-top: 4px;
 }
