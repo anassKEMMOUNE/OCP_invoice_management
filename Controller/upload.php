@@ -53,9 +53,7 @@ function uploadExcel($inputName){
     }
   }
 
-
-return $target_file;
-
+  return $target_file;
 }
 
 $dbsAttr = array(
@@ -81,10 +79,13 @@ $dbsAttr = array(
   'nomFournisseur' => 'Fournisseur',
   'siteFournisseur' => 'Site fournisseur'
 );
+
 $first = uploadExcel("fileToUpload");
 $second = uploadExcel("fileToUpload2");
+
 insertTable1($first,$dbsAttr);
 insertTable2($second,$dbsAttr);
+
 executeSqlFile("../Model/finalExcel.sql",true);
 
 ?>
