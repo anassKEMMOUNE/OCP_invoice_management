@@ -1,0 +1,98 @@
+mysql> use invoiceDb;
+Database changed
+mysql> DROP TABLE if EXISTS FinalBase;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE FinalBase AS
+    -> SELECT BaseTable.rank_ , BaseTable.uniteOperationnelle,BaseTable.identifiantGED,BaseTable.siteCEC,BaseTable.service, BaseTable.nomFournisseur,BaseTable.codeFournisseur,BaseTable.siteFournisseur,BaseTable2.blocage,BaseTable2.categorie,BaseTable2.nomCDP,BaseTable2.nomEntite,BaseTable2.entiteSite,BaseTable2.entiteG,BaseTable2.cA,BaseTable.numCommande,BaseTable.montantCommande,BaseTable.montantReceptionne,BaseTable.montantDesFactures,BaseTable.montantMiseADisposition,BaseTable.numeroFacture,BaseTable.montantFactureTTCDevise,BaseTable.deviseFacture,BaseTable.type_,BaseTable.acheteur,BaseTable.typeDAchatPO,BaseTable.intervenant,BaseTable.nombreDeJoursAEcheance
+    -> FROM BaseTable INNER JOIN BaseTable2 on BaseTable.numeroFacture = BaseTable2.numeroFacture;
+Query OK, 12 rows affected (0.04 sec)
+Records: 12  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> use invoiceDb;
+Database changed
+mysql> DROP TABLE if EXISTS BaseTable;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE BaseTable (
+    ->   rank_ INT,
+    ->   UniteOperationnelle VARCHAR(100),
+    ->   identifiantGED VARCHAR(100),
+    ->   siteCEC VARCHAR(100),
+    ->   service VARCHAR(100),
+    ->   nomFournisseur VARCHAR(100),
+    ->   fournisseurR12 VARCHAR(100),
+    ->   codeFournisseur INT,
+    ->   siteFournisseur VARCHAR(100),
+    ->   typeFacture VARCHAR(100),
+    ->   dateGL VARCHAR(100),
+    ->   statut VARCHAR(100),
+    ->   statut2 VARCHAR(100),
+    ->   contextCUF VARCHAR(100),
+    ->   numCommande INT,
+    ->   montantCommande DECIMAL(10, 2),
+    ->   montantReceptionne DECIMAL(10, 2),
+    ->   montantDesFactures DECIMAL(10, 2),
+    ->   montantMiseADisposition DECIMAL(10, 2),
+    ->   dateEnvoiALOrdonnancement VARCHAR(100),
+    ->   dateTransmissionTreso VARCHAR(100),
+    ->   numeroFacture VARCHAR(100),
+    ->   dateFacture VARCHAR(100),
+    ->   montantFactureTTCDevise DECIMAL(10, 2),
+    ->   montantRetenuFacture DECIMAL(10, 2),
+    ->   deviseFacture VARCHAR(100),
+    ->   type_ VARCHAR(100),
+    ->   tauxChange DECIMAL(10, 2),
+    ->   montantFactureTTCMAD DECIMAL(10, 2),
+    ->   dateBaseEcheance VARCHAR(100),
+    ->   conditionDePaiement VARCHAR(100),
+    ->   dateEcheance VARCHAR(100),
+    ->   echeance VARCHAR(100),
+    ->   dateScan VARCHAR(100),
+    ->   dateCreationSurShare VARCHAR(100),
+    ->   motifRejetFMFI VARCHAR(100),
+    ->   blocageERP VARCHAR(100),
+    ->   documentsManquants VARCHAR(100),
+    ->   acheteur VARCHAR(100),
+    ->   demandeurDeLaCommande VARCHAR(100),
+    ->   approbateur VARCHAR(100),
+    ->   cBFrnsSurShare VARCHAR(100),
+    ->   cBFrnsSurEnteteFactureR12 VARCHAR(100),
+    ->   cBFrnsSurEcheanceR12 VARCHAR(100),
+    ->   dernierCommentaire VARCHAR(100),
+    ->   dateDernierCommentaire VARCHAR(100),
+    ->   statutReglementSurR12 VARCHAR(100),
+    ->   dateReglementSurR12 VARCHAR(100),
+    ->   numeroDeReglementR12 VARCHAR(100),
+    ->   typeDAchatPO VARCHAR(100),
+    ->   sAR12 VARCHAR(100),
+    ->   descriptionSAR12 VARCHAR(100),
+    ->   siteR12 VARCHAR(100),
+    ->   entiteR12 VARCHAR(100),
+    ->   factureSHARETraiteePar VARCHAR(100),
+    ->   iDFactureR12 VARCHAR(100),
+    ->   iDFactureSHARE VARCHAR(100),
+    ->   classeProjet VARCHAR(100),
+    ->   nomCDP VARCHAR(100),
+    ->   approbation1 VARCHAR(100),
+    ->   approbation2 VARCHAR(100),
+    ->   approbation3 VARCHAR(100),
+    ->   approbation4 VARCHAR(100),
+    ->   comptable VARCHAR(100),
+    ->   litige VARCHAR(100),
+    ->   sPOC VARCHAR(100),
+    ->   site VARCHAR(100),
+    ->   siteDI VARCHAR(100),
+    ->   axe VARCHAR(100),
+    ->   intervenant VARCHAR(100),
+    ->   blocage VARCHAR(100),
+    ->   systeme VARCHAR(100),
+    ->   nombreDeJoursAEcheance INT,
+    ->   categorieAnciennete VARCHAR(100),
+    ->   satut VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> 
+mysql> Terminal close -- exit!

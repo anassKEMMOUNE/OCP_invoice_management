@@ -1,10 +1,17 @@
 <?php
-function createBaseTable($sqlFile){
+function executeSqlFile($sqlFile , $withDir = false){
     require __DIR__.'/dbConfig.php';
     // Read the SQL file
     
     $sqlCommands = file_get_contents($sqlFile);
-    
+    $StorePath = str_replace("Model","Exports/csvOut.csv",__DIR__);
+    $StorePath = str_replace('\\',"/",$StorePath);
+    echo $StorePath;
+    if ($withDir == true){
+
+       $sqlCommands = str_replace("directoryToChange",$StorePath,$sqlCommands);
+        echo $sqlCommands;
+    }
     // Execute the SQL commands
     if ($conn->multi_query($sqlCommands)) {
         do {

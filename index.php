@@ -18,6 +18,8 @@
     <form method="post" enctype="multipart/form-data" action ="Controller/upload.php">
         <label for="fileToUpload">Please input your excel sheet</label>
          <input type="file" name="fileToUpload" id="fileToUpload">
+         <label for="fileToUpload2">Please input your second excel sheet</label>
+         <input type="file" name="fileToUpload2" id="fileToUpload2">
          <input type="submit">
 
     </form>
