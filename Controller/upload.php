@@ -82,7 +82,7 @@ $dbsAttr = array(
 
 $first = uploadExcel("fileToUpload");
 $second = uploadExcel("fileToUpload2");
-
+executeSqlFile("../Model/ClearDB.sql");
 insertTable1($first,$dbsAttr);
 insertTable2($second,$dbsAttr);
 

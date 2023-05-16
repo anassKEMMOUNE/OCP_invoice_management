@@ -1,7 +1,7 @@
 <?php
 
 function insertTable1($pathTofile,$dbsAttr){
-    require_once __DIR__.'/dbConfig.php';
+    require __DIR__.'/dbConfig.php';
     require_once "excelReader/excel_reader2.php";
     require_once "excelReader/SpreadsheetReader.php";
     require_once "../Model/executeSqlFile.php";
