@@ -1,2 +1,2 @@
 # OCP_invoice_management
-This is the repo containing the code for the database invoice management web application
+This is the repo contains the code for the database invoice management web application
