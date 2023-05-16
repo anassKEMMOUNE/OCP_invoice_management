@@ -5,6 +5,7 @@
     --nav-hover: rgba(252, 252, 252, 0.3);
     --nav-icons: rgb(120,120,120);
     --nav-on:rgb(69,68,216);
+    --nav-on-light:rgb(95, 95, 218);
     --nav-color-link:rgba(0, 0, 0, 0.75);
     --nav-border-color:#dddddd;
     --nav-hover-color:#cccccc;
@@ -118,6 +119,10 @@ i, span {
 
 }
 
+.main_block {
+    width : 100%;
+}
+
 .upload_form {
     display: flex;
     align-items: center;
@@ -129,7 +134,8 @@ i, span {
     border-color: var(--nav-color);
     width: 80%;
     height: 20%;
-    margin: 10%;
+    margin-left: 10%;
+    margin-top: 7%;
     box-shadow: 5px 10px var(--var-color-shadow);
 
 }
@@ -147,10 +153,7 @@ i, span {
 label {
     font-weight: bold;
     margin-right: 10px;
-}
-
-input[type="file"] {
-    padding: 5px;
+    margin-bottom: 10px;
 }
 
 input[type="submit"] {
@@ -160,12 +163,41 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
     border-radius: 8px;
-    width: 110px;
+    width: 120px;
     margin: auto;
+    margin-top: 13px;
+    margin-bottom: 0px;
 }
 
 .nav_dashboard{
     margin-top: 4px;
 }
 
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+  
+input[type="file"] {
+    padding: 5px;
+    font-size: 16px;
+}
 
+#fileToUpload::-webkit-file-upload-button, #fileToUpload2::-webkit-file-upload-button {
+    display: inline-block;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: var(--nav-on);
+    font-size: 16px;
+    font-weight: small;
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+}
+
+#fileToUpload::-webkit-file-upload-button:hover, #fileToUpload2::-webkit-file-upload-button:hover {
+    background-color: var(--nav-on-light);
+}

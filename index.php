@@ -13,9 +13,14 @@ include 'View/head.html';
         <div class="upload_form">
             <form method="post" enctype="multipart/form-data" action ="Controller/upload.php" class='file_input'>
                 <label >Please input your two excel sheets</label>
+                
                 <div class="flex">
-                    <input type="file" name="fileToUpload" id="fileToUpload" >
-                    <input type="file" name="fileToUpload2" id="fileToUpload2" >
+                    <div class="container">
+                        <input type="file" name="fileToUpload" id="fileToUpload" >
+                    </div>
+                    <div class="container">
+                        <input type="file" name="fileToUpload2" id="fileToUpload2">
+                    </div>
                 </div>
 
                 <input type="submit">
