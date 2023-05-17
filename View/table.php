@@ -102,6 +102,12 @@
                             echo "<th>nombreDeJoursAEcheance</th>";
                             echo "<th>cA</th>";
                             echo "<th>blocage</th>";
+                            echo "<th>entiteSite</th>";
+                            echo "<th>entiteG</th>";
+                            echo "<th>siteCEC</th>";
+                            echo "<th>deviseFacture</th>";
+                            echo "<th>typeF</th>";
+                            echo "<th>rank</th>";
                         echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";
@@ -128,7 +134,12 @@
                             echo "<td>" . $row['nombreDeJoursAEcheance'] . "</td>";
                             echo "<td>" . $row['cA'] . "</td>";
                             echo "<td>" . $row['blocage'] . "</td>";
-                 
+                            echo "<td>" . $row['entiteSite'] . "</td>";
+                            echo "<td>" . $row['entiteG'] . "</td>";
+                            echo "<td>" . $row['siteCEC'] . "</td>";
+                            echo "<td>" . $row['deviseFacture'] . "</td>";
+                            echo "<td>" . $row['typeF'] . "</td>";
+                            echo "<td>" . $row['rank_'] . "</td>";
                         echo "</tr>";
                     }
                     echo "</tbody>";                            
@@ -163,4 +174,4 @@
         </li>
     </ul>
     </nav>
-</section> 
+</section>
