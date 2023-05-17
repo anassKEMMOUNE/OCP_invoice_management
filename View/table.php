@@ -152,14 +152,14 @@
     <ul class="pagination">
         <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-            <a href="table.php?page=<?= $currentPage - 1 ?>&limit=<?= $perPage ?>" class="page-link">Previous</a>
+            <a href="index.php?page=<?= $currentPage - 1 ?>&limit=<?= $perPage ?>" class="page-link">Previous</a>
         </li>
         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
             <a href="" class="page-link">Page : <?php echo $currentPage ?></a>
         </li>
             <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
             <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-            <a href="table.php?page=<?= $currentPage + 1 ?>&limit=<?= $perPage ?>" class="page-link">Next</a>
+            <a href="index.php?page=<?= $currentPage + 1 ?>&limit=<?= $perPage ?>" class="page-link">Next</a>
         </li>
     </ul>
     </nav>
