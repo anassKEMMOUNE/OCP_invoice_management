@@ -1,15 +1,18 @@
 <?php
 function executeSqlFile($sqlFile , $withDir = false){
     require __DIR__.'/dbConfig.php';
-    // Read the SQL file
-    
+    //generating random file name
+    $a = rand(111,11111);
+    $outPath = "Exports/csvOut".strval($a).".csv";
     $sqlCommands = file_get_contents($sqlFile);
-    $StorePath = str_replace("Model","Exports/csvOut.csv",__DIR__);
+    // Read the SQL file
+    $StorePath = str_replace("Model",$outPath,__DIR__);
     $StorePath = str_replace('\\',"/",$StorePath);
     echo $StorePath;
     if ($withDir == true){
+
        $sqlCommands = str_replace("directoryToChange",$StorePath,$sqlCommands);
-        echo $sqlCommands;
+       echo $sqlCommands;
     }
     // Execute the SQL commands
     if ($conn->multi_query($sqlCommands)) {
@@ -17,16 +20,16 @@ function executeSqlFile($sqlFile , $withDir = false){
             // Check if there are more results
             if ($result = $conn->store_result()) {
                 // Free the result set
-                $resultStore = $result;
                 $result->free();
             }
         } while ($conn->more_results() && $conn->next_result());
     } else {
         echo "Error executing SQL commands: " . $conn->error;
     }
-
     return 
     // Close the MySQL connection
     $conn->close();
+    return $outpath;
 }
+
 ?>
