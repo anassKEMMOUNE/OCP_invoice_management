@@ -10,6 +10,7 @@ function insertTable1($pathTofile,$dbsAttr){
     $Base1reader = new SpreadsheetReader($pathTofile);
     $count = 0;
     $attr;
+    $error;
 
     foreach($Base1reader as $key => $row){
         if($count == 0){
@@ -23,17 +24,17 @@ function insertTable1($pathTofile,$dbsAttr){
             $siteFournisseur = $row[array_search($dbsAttr['siteFournisseur'], $attr)];
             $sql = "INSERT INTO `fournisseur` (`codeFournisseur`, `nomFournisseur`, `siteFournisseur`) VALUES ('$codeFournisseur', '$nomFournisseur', '$siteFournisseur');";
             if ($conn->query($sql) === TRUE) {
-            echo "Fournisseur insertion executed succesfully ";
+                $error = "Fournisseur insertion executed succesfully ";
             } else {
-            echo "Error: " . $conn->error;
+                $error = "Error: " . $conn->error;
             }
 
             // Insertion into entite table
-            $sql = "INSERT INTO `entite` (`nomEntite`) VALUES ('Missing');";
+            $sql = "INSERT INTO `entite` (`nomEntite`, `entiteSite`) VALUES ('Missing', 'Missing');";
             if ($conn->query($sql) === TRUE) {
-            echo "Entite insertion executed succesfully ";
+                $error = "Entite insertion executed succesfully ";
             } else {
-            echo "Error: " . $conn->error;
+                $error = "Error: " . $conn->error;
             }
 
             // Insertion into chefdeprojet table
@@ -43,14 +44,14 @@ function insertTable1($pathTofile,$dbsAttr){
                     $maxIdEValue = $rowMaxIdE[0];
                     $sql = "INSERT INTO `chefdeprojet` (`idE`, `nomCDP`) VALUES ('$maxIdEValue', 'Missing');";
                     if ($conn->query($sql) === TRUE) {
-                    echo "Chefdeprojet insertion executed succesfully ";
+                        $error = "Chefdeprojet insertion executed succesfully ";
                     } else {
-                    echo "Max selection error: " . $conn->error;
+                        $error = "Max selection error: " . $conn->error;
                     }
-                    echo "Max idE determined succesfully ";
+                    $error = "Max idE determined succesfully ";
                 }
             } else {
-            echo "Insertion error: " . $conn->error;
+                $error = "Insertion error: " . $conn->error;
             }
 
             // Insertion into commande table
@@ -67,14 +68,14 @@ function insertTable1($pathTofile,$dbsAttr){
                     $maxCDPEValue = $rowMaxCDP[0];
                     $sql = "INSERT INTO `commande` (`numCommande`, `service`, `typeDAchatPO`, `uniteOperationelle`, `montantCommande`, `montantReceptionne`, `acheteur`, `codeFournisseur`, `idCDP`) VALUES ('$numCommande', '$service', '$typeDAchatPO', '$uniteOperationelle', '$montantCommande', '$montantReceptionne', '$acheteur', '$codeFournisseur', '$maxCDPEValue');";
                     if ($conn->query($sql) === TRUE) {
-                    echo "Commande insertion executed succesfully ";
+                        $error = "Commande insertion executed succesfully ";
                     } else {
-                    echo "Max selection error: " . $conn->error;
+                        $error = "Max selection error: " . $conn->error;
                     }
-                    echo "Max idCDP determined succesfully ";
+                    $error = "Max idCDP determined succesfully ";
                 }
             } else {
-            echo "Error: " . $conn->error;
+                $error = "Error: " . $conn->error;
             }
 
             // Insertion into facture table
@@ -85,11 +86,15 @@ function insertTable1($pathTofile,$dbsAttr){
             $montantMiseADisposition = $row[array_search($dbsAttr['montantMiseADisposition'], $attr)];
             $intervenant = $row[array_search($dbsAttr['intervenant'], $attr)];
             $nombreDeJoursAEcheance = $row[array_search($dbsAttr['nombreDeJoursAEcheance'], $attr)];
-            $sql = "INSERT INTO `facture` (`identifiantGED`, `numeroFacture`, `montantDesFactures`, `montantFactureTTCDevise`, `montantMiseADisposition`, `intervenant`, `nombreDeJoursAEcheance`, `cA`, `blocage`, `numCommande`, `idE`) VALUES ('$identifiantGED', '$numeroFacture', '$montantDesFactures', '$montantFactureTTCDevise', '$montantMiseADisposition', '$intervenant', '$nombreDeJoursAEcheance', 'Missing', 'Missing', '$numCommande', '$maxIdEValue');";
+            $siteCEC = $row[array_search($dbsAttr['siteCEC'], $attr)];
+            $deviseFacture = $row[array_search($dbsAttr['deviseFacture'], $attr)];
+            $typeF = $row[array_search($dbsAttr['typeF'], $attr)];
+            $rank = $row[array_search($dbsAttr['rank_'], $attr)];
+            $sql = "INSERT INTO `facture` (`identifiantGED`, `numeroFacture`, `montantDesFactures`, `montantFactureTTCDevise`, `montantMiseADisposition`, `intervenant`, `nombreDeJoursAEcheance`, `cA`, `blocage`, `numCommande`, `idE`, `siteCEC`, `deviseFacture`, `typeF`, `entiteG`, `rank_`) VALUES ('$identifiantGED', '$numeroFacture', '$montantDesFactures', '$montantFactureTTCDevise', '$montantMiseADisposition', '$intervenant', '$nombreDeJoursAEcheance', 'Missing', 'Missing', '$numCommande', '$maxIdEValue', '$siteCEC', '$deviseFacture', '$typeF', 'Missing', '$rank');";
             if ($conn->query($sql) === TRUE) {
-            echo "Facture insertion executed succesfully ";
+                $error = "Facture insertion executed succesfully ";
             } else {
-            echo "Error: " . $conn->error;
+                $error = "Error: " . $conn->error;
             }
         }
     }

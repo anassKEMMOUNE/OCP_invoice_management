@@ -14,31 +14,34 @@ function insertTable2($pathTofile,$dbsAttr){
         if($count == 0){
             $attr = $row;
             $count++;
+            $error;
         }
         else{
             // Updating table facture
             $identifiantGED = $row[array_search($dbsAttr['identifiantGED'], $attr)];
             $blocage = $row[array_search($dbsAttr['blocage'], $attr)];
             $cA = $row[array_search($dbsAttr['cA'], $attr)];
-            $sql = "UPDATE `facture` SET `blocage` = '$blocage', `cA` = '$cA' WHERE `facture`.`identifiantGED` = '$identifiantGED'";
+            $entiteG = $row[array_search($dbsAttr['entiteG'], $attr)];
+            $sql = "UPDATE `facture` SET `blocage` = '$blocage', `cA` = '$cA', `entiteG` = '$entiteG' WHERE `facture`.`identifiantGED` = '$identifiantGED'";
             if ($conn->query($sql) === TRUE) {
-            echo "blocage and ca update executed succesfully ";
+                $error = "blocage and ca update executed succesfully ";
             } else {
-            echo "Update error: " . $conn->error;
+                $error = "Update error: " . $conn->error;
             }
 
             // Updating table entite
             $nomEntite = $row[array_search($dbsAttr['nomEntite'], $attr)];
+            $entiteSite = $row[array_search($dbsAttr['entiteSite'], $attr)];
             $nomEntiteCountQuery = "SELECT COUNT(*) nomEntite FROM entite E WHERE E.nomEntite = '$nomEntite';"; 
             if ($nomEntiteCount = $conn->query($nomEntiteCountQuery)) {
                 while ($rowNomEntiteCount = $nomEntiteCount -> fetch_row()) {
                     $nomEntiteCountValue = $rowNomEntiteCount[0];
                     if($nomEntiteCountValue == 0){
-                        $sql = "UPDATE `entite` SET `nomEntite` = '$nomEntite' WHERE `idE` = (SELECT `idE` FROM `facture` WHERE `identifiantGED` = '$identifiantGED');";
+                        $sql = "UPDATE `entite` SET `nomEntite` = '$nomEntite', `entiteSite` = '$entiteSite' WHERE `idE` = (SELECT `idE` FROM `facture` WHERE `identifiantGED` = '$identifiantGED');";
                         if ($conn->query($sql) === TRUE) {
-                        echo "nomEntite update executed succesfully ";
+                            $error = "nomEntite update executed succesfully ";
                         } else {
-                        echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
                     }
                     else {
@@ -58,23 +61,23 @@ function insertTable2($pathTofile,$dbsAttr){
 
                         $updatingFactureQuery = "UPDATE `facture` SET `idE` = '$existentIdEValue' WHERE `idE` = '$toBeReplacedIdEValue';";
                         if ($conn->query($updatingFactureQuery) === TRUE) {
-                            echo "idE update executed succesfully ";
+                            $error = "idE update executed succesfully ";
                         } else {
-                            echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
 
                         $updatingChefDeProjetQuery = "UPDATE `chefdeprojet` SET `idE` = '$existentIdEValue' WHERE `idE` = '$toBeReplacedIdEValue';";
                         if ($conn->query($updatingChefDeProjetQuery) === TRUE) {
-                            echo "idE update executed succesfully ";
+                            $error = "idE update executed succesfully ";
                         } else {
-                            echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
 
                         $deletingExistentIdEQuery = "DELETE FROM `entite` WHERE `idE` = '$toBeReplacedIdEValue';";
                         if ($conn->query($deletingExistentIdEQuery) === TRUE) {
-                            echo "redendunt idE deletion executed succesfully ";
+                            $error = "redendunt idE deletion executed succesfully ";
                         } else {
-                            echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
                     }
                 }
@@ -89,9 +92,9 @@ function insertTable2($pathTofile,$dbsAttr){
                     if($nomCDPCountValue == 0){
                         $sql = "UPDATE `chefdeprojet` SET `nomCDP` = '$nomCDP' WHERE `idCDP` = (SELECT `idCDP` FROM `commande` WHERE `numCommande` = (SELECT `numCommande` FROM `facture` WHERE `identifiantGED` = '$identifiantGED'));";
                         if ($conn->query($sql) === TRUE) {
-                        echo "nomCDP update executed succesfully ";
+                            $error = "nomCDP update executed succesfully ";
                         } else {
-                        echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
                     }
                     else{
@@ -111,16 +114,16 @@ function insertTable2($pathTofile,$dbsAttr){
 
                         $updatingCommandeQuery = "UPDATE `commande` SET `idCDP` = '$existentCDPValue' WHERE `idCDP` = '$toBeReplacedCDPValue';";
                         if ($conn->query($updatingCommandeQuery) === TRUE) {
-                            echo "idCDP update executed succesfully ";
+                            $error = "idCDP update executed succesfully ";
                         } else {
-                            echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
 
                         $deletingExistentCDPQuery = "DELETE FROM `chefdeprojet` WHERE `idCDP` = '$toBeReplacedCDPValue';";
                         if ($conn->query($deletingExistentCDPQuery) === TRUE) {
-                            echo "redendunt idCDP deletion executed succesfully ";
+                            $error = "redendunt idCDP deletion executed succesfully ";
                         } else {
-                            echo "Update error: " . $conn->error;
+                            $error = "Update error: " . $conn->error;
                         }
                     }
                 }

@@ -1,5 +1,8 @@
-DELETE FROM fournisseur;
-DELETE FROM entite;
-DELETE FROM ChefDeProjet;
-DELETE FROM Commande;
 DELETE FROM Facture;
+DELETE FROM Commande;
+DELETE FROM ChefDeProjet;
+DELETE FROM entite;
+DELETE FROM fournisseur;
+
+
+
