@@ -6,11 +6,10 @@ function executeSqlFile($sqlFile , $withDir = false){
     $sqlCommands = file_get_contents($sqlFile);
     $StorePath = str_replace("Model","Exports/csvOut.csv",__DIR__);
     $StorePath = str_replace('\\',"/",$StorePath);
-
+    echo $StorePath;
     if ($withDir == true){
-
        $sqlCommands = str_replace("directoryToChange",$StorePath,$sqlCommands);
-       echo $sqlCommands;
+        echo $sqlCommands;
     }
     // Execute the SQL commands
     if ($conn->multi_query($sqlCommands)) {
@@ -25,9 +24,9 @@ function executeSqlFile($sqlFile , $withDir = false){
     } else {
         echo "Error executing SQL commands: " . $conn->error;
     }
+
     return 
     // Close the MySQL connection
     $conn->close();
 }
-
 ?>
