@@ -1,9 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include 'head.html'
+include 'head.html';
+
 ?>
 <body class = 'main'>
 
@@ -11,6 +10,19 @@ include 'head.html'
         include "sidebar.html";
 
     ?>
+    <div class="dashboard_block1">
+
+    </div>
+    <div class="dashboard_block2">
+
+    </div>
+    <div class="dashboard_block3">
+
+    </div>
+    <div class="dashboard_graphs">
+
+
+    </div>
 
 
 
