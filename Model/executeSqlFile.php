@@ -29,6 +29,7 @@ function executeSqlFile($sqlFile , $withDir = false){
     return 
     // Close the MySQL connection
     $conn->close();
+    echo "\n This the : $outpath";
     return $outpath;
 }
 

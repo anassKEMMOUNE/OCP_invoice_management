@@ -2,6 +2,7 @@
 require_once "../Model/executeSqlFile.php";
 require_once "../Model/TableInsert1.php";
 require_once "../Model/TableInsert2.php";
+require_once "modifyCsv.php";
 function uploadExcel($inputName){
   $target_dir = "../uploads/";
   $target_file = $target_dir . basename($_FILES[$inputName]["name"]);
@@ -82,16 +83,19 @@ $dbsAttr = array(
   'deviseFacture' => 'Devise Facture',
   'typeF' => 'Type',
   'entiteG' => 'Entité G',
-  'rank_' => 'RANK'
+  'rank_' => 'RANK',
+  'echeance' => 'Échéance'
 );
 
 $first = uploadExcel("fileToUpload");
 $second = uploadExcel("fileToUpload2");
-executeSqlFile("../Model/ClearDB.sql");
+$csvOutput = executeSqlFile("../Model/ClearDB.sql");
+
+modifyFirstLineCsv($csvOutput,$dbsAttr);
 insertTable1($first, $dbsAttr);
 insertTable2($second, $dbsAttr);
 
 executeSqlFile("../Model/finalExcel.sql",true);
-header("Location: ../index.php");
+//header("Location: ../index.php");
 
 ?>

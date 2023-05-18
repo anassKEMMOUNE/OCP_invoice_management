@@ -68,5 +68,16 @@ CREATE TABLE Facture (
   FOREIGN KEY (idE) REFERENCES Entite(idE)
 );
 
+CREATE VIEW Facture_View AS
+SELECT *,
+    CASE
+        WHEN nombreDeJoursAEcheance < 0 THEN 'Echue'
+        WHEN nombreDeJoursAEcheance <= 7 THEN 'Echue dans 7 jours'
+        WHEN nombreDeJoursAEcheance <= 30 THEN 'Echue dans 30 jours'
+        WHEN nombreDeJoursAEcheance <= 60 THEN 'Echue dans 60 jours'
+    END AS echeance
+FROM Facture;
+
+
 CREATE INDEX idx_Facture_NombreDeJours ON invoiceDb.Facture(nombreDeJoursAEcheance);
 CREATE INDEX idx_Facture_ContractAdmin ON Facture(CA);
