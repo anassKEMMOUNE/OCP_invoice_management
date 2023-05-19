@@ -1,22 +1,29 @@
 <?php 
 
+function modifyFirstLineCsv(string $filePath, $associativeArray) {
+    $firstRawData = ["rank_","uniteOperationelle", "identifiantGED","siteCEC", "service", "nomFournisseur", "blocage" , 
+    "nomCDP", "nomEntite" ,"cA", "numCommande", "montantCommande","montantReceptionne","montantDesFactures", 
+    "montantMiseADisposition" ,"numeroFacture" , "montantFactureTTCDevise", "deviseFacture","typeF","acheteur", "typeDAchatPO", 
+    "intervenant","nombreDeJoursAEcheance","echeance"];
+    $newRow = array_map(function($key) use ($associativeArray) {
+        return $associativeArray[$key];
+    }, $firstRawData);
+var_dump($newRow);
+    // Read the existing contents of the file
+$fileContents = file_get_contents($filePath);
 
-        // Path to the CSV file
-        function modifyFirstLineCsv($csvPath,$associativeArray){
-            $firstRawData = ["uniteOperationelle", "identifiantGED", "service", "nomFournisseur", "blocage" , 
-            "nomCDP", "nomEntite" ,"cA", "numCommande", "montantCommande","montantReceptionne","montantDesFactures", 
-            "montantMiseADisposition" ,"numeroFacture" , "montantFactureTTCDevise", "acheteur", "typeDAchatPO", 
-            "intervenant","nombreDeJoursAEcheance","echeance"];
-            $firstLineData = array_map(function($key) use ($associativeArray) {
-                return $associativeArray[$key];
-            }, $firstRawData);
-        $fileContent = file($csvPath);
-        $arr = [];
-        array_push($arr,implode(",",$firstLineData).PHP_EOL);
-        array_push($arr,$fileContent);
-        file_put_contents($csvPath, implode("\n",$arr));
-        }
-        
+// Create the new row string
+$newRowString = '"' . implode('","', $newRow) . '"' . PHP_EOL;
+
+// Insert the new row at the beginning of the file
+$fileContents = $newRowString . $fileContents;
+
+// Write the updated contents back to the file
+file_put_contents($filePath, $fileContents);
+var_dump($filePath);
+echo "New row added successfully.";
+
+}
 
 
 ?>

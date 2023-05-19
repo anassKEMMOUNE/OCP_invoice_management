@@ -1,18 +1,19 @@
 <?php
-function executeSqlFile($sqlFile , $withDir = false){
+function executeSqlFile($sqlFile , $withDir = false):string{
     require __DIR__.'/dbConfig.php';
     //generating random file name
     $a = rand(111,11111);
-    $outPath = "Exports/csvOut".strval($a).".csv";
+    $outPath = "/Exports/csvOut".strval($a).".csv";
     $sqlCommands = file_get_contents($sqlFile);
     // Read the SQL file
     $StorePath = str_replace("Model",$outPath,__DIR__);
     $StorePath = str_replace('\\',"/",$StorePath);
-    echo $StorePath;
+    //echo $StorePath;
     if ($withDir == true){
 
        $sqlCommands = str_replace("directoryToChange",$StorePath,$sqlCommands);
-       echo $sqlCommands;
+       
+       
     }
     // Execute the SQL commands
     if ($conn->multi_query($sqlCommands)) {
@@ -26,11 +27,12 @@ function executeSqlFile($sqlFile , $withDir = false){
     } else {
         echo "Error executing SQL commands: " . $conn->error;
     }
-    return 
+    
     // Close the MySQL connection
     $conn->close();
-    echo "\n This the : $outpath";
-    return $outpath;
+    //echo "\n This the : $outpath";
+    
+    return $StorePath;
 }
 
 ?>

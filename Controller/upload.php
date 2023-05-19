@@ -3,6 +3,7 @@ require_once "../Model/executeSqlFile.php";
 require_once "../Model/TableInsert1.php";
 require_once "../Model/TableInsert2.php";
 require_once "modifyCsv.php";
+require_once "convertToexcel.php";
 function uploadExcel($inputName){
   $target_dir = "../uploads/";
   $target_file = $target_dir . basename($_FILES[$inputName]["name"]);
@@ -89,13 +90,13 @@ $dbsAttr = array(
 
 $first = uploadExcel("fileToUpload");
 $second = uploadExcel("fileToUpload2");
-$csvOutput = executeSqlFile("../Model/ClearDB.sql");
-
-modifyFirstLineCsv($csvOutput,$dbsAttr);
+executeSqlFile("../Model/ClearDB.sql");
 insertTable1($first, $dbsAttr);
 insertTable2($second, $dbsAttr);
 
-executeSqlFile("../Model/finalExcel.sql",true);
+$csvOutput = executeSqlFile("../Model/finalExcel.sql",true);
+modifyFirstLineCsv($csvOutput,$dbsAttr);
+//convertToExcel($csvOutput,str_replace("csv","xlsx",$csvOutput));
 //header("Location: ../index.php");
 
 ?>
