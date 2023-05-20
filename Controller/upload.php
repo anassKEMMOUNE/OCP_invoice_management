@@ -97,6 +97,6 @@ insertTable2($second, $dbsAttr);
 $csvOutput = executeSqlFile("../Model/finalExcel.sql",true);
 modifyFirstLineCsv($csvOutput,$dbsAttr);
 //convertToExcel($csvOutput,str_replace("csv","xlsx",$csvOutput));
-//header("Location: ../index.php");
+header("Location: ../index.php");
 
 ?>
