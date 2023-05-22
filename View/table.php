@@ -1,5 +1,5 @@
 <?php
-    require_once 'Model/dbConfig.php';
+    require_once '../Model/dbConfigUser.php';
     if(isset($_GET['page']) && !empty($_GET['page'])) {
         $currentPage = (int) strip_tags($_GET['page']);
     } else {
@@ -45,6 +45,8 @@
 
     <?php
     // Query
+    require_once '../Model/dbConfigUser.php';
+    $conn = connectToUserDatabase($_COOKIE['username']);
     $number = "SELECT * FROM fournisseur NATURAL JOIN entite NATURAL JOIN chefdeprojet NATURAL JOIN commande NATURAL JOIN facture";
 
     // Preparing query

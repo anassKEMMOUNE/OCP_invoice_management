@@ -29,13 +29,13 @@
 				<div class="sign100-pic js-tilt" data-tilt>
 					<img src="Assets/images/OCP_Group.svg.png" alt="IMG">
 				</div>
-
-				<form class="sign100-form validate-form">
+				
+				<form class="sign100-form validate-form" method="post" action="../Controller/signup.php">
 					<span class="sign100-form-title">
 						Member Sign up
 					</span>
 					<!--fa fa-envelope-->
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "A valid username is required">
 						<input class="input100" type="text" name="username" placeholder="Username">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -52,23 +52,25 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password" >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
+						
 					</div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Confirm password">
+                    <div class="wrap-input100 validate-input" data-validate = "Passwords must be the same ">
+						<input class="input100" type="password" name="confirmPassword" placeholder="Confirm password"  >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
+						
 					</div>
 					
 					<div class="container-sign100-form-btn">
-						<button class="sign100-form-btn">
+						<button class="sign100-form-btn" >
 							Sign up
 						</button>
 					</div>
@@ -87,6 +89,7 @@
 	</div>
 	
 	
+
 
 	
 <!--===============================================================================================-->	

@@ -1,10 +1,10 @@
 <?php
-function insertTable2($pathTofile,$dbsAttr){
-    require __DIR__.'/dbConfig.php';
+function insertTable2($pathTofile,$dbsAttr,$user){
+    require __DIR__.'/dbConfigUser.php';
     require_once "excelReader/excel_reader2.php";
     require_once "excelReader/SpreadsheetReader.php";
     require_once "../Model/executeSqlFile.php";
-
+    $conn = connectToUserDatabase($user);
     // Second sheet upload
     $base2reader = new SpreadsheetReader($pathTofile);
     $count = 0;

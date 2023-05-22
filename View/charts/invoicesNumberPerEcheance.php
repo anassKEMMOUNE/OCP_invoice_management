@@ -1,9 +1,7 @@
 <?php 
-  require_once '../../Model/dbConfig.php';
+  require_once '../Model/dbConfigUser.php';
 ?>
 
-<!DOCTYPE html>
-<html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,9 +22,10 @@
     width: 41px;
   }
 </style>
-<body>
+
 
   <?php
+    $conn = connectToUserDatabase($_COOKIE['username']);
     $sql = "SELECT echeance, COUNT(echeance) FROM facture_view GROUP BY echeance;";
     $result = $conn->query($sql);
     $xValues = array();
@@ -44,13 +43,18 @@
     $conn->close();
   ?>
 
-  <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+  <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+  <div class="button_group_chart_2">
   <?php
     foreach($xValues as $idx => $label) {
+      echo '<div class="lbl">';
       echo '<button id="' . $idx . '" onclick="toggleLabel(' . $idx . ')"></button>';
       echo '<label for="' . $idx . '">' . $label . '</label>';
+      echo '</div>';
     }
   ?>
+  </div>
+
 
   <script>
     // generate random color
@@ -87,7 +91,7 @@
       }]
     };
 
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('myChart2').getContext('2d');
     var pieChart = new Chart(ctx, {
       type: 'pie',
       data: JSON.parse(JSON.stringify(originalData)),
@@ -138,5 +142,3 @@
 
   </script>
 
-</body>
-</html>

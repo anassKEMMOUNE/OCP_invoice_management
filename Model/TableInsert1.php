@@ -1,7 +1,8 @@
 <?php
 
-function insertTable1($pathTofile,$dbsAttr){
-    require __DIR__.'/dbConfig.php';
+function insertTable1($pathTofile,$dbsAttr,$user){
+    require __DIR__.'/dbConfigUser.php';
+    $conn = connectToUserDatabase($user);
     require_once "excelReader/excel_reader2.php";
     require_once "excelReader/SpreadsheetReader.php";
     require_once "../Model/executeSqlFile.php";

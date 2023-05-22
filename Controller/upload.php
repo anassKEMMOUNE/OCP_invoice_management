@@ -31,7 +31,7 @@ function uploadExcel($inputName){
   }
   
   // Check file size
-  if ($_FILES[$inputName]["size"] > 500000) {
+  if ($_FILES[$inputName]["size"] > 80000000) {
     $error =  "Sorry, your file is too large.";
     $uploadOk = 0;
   }
@@ -91,12 +91,14 @@ $dbsAttr = array(
 $first = uploadExcel("fileToUpload");
 $second = uploadExcel("fileToUpload2");
 executeSqlFile("../Model/ClearDB.sql");
-insertTable1($first, $dbsAttr);
-insertTable2($second, $dbsAttr);
+$user = $_COOKIE['username'];
+insertTable1($first, $dbsAttr,$user);
+insertTable2($second, $dbsAttr,$user);
 
 $csvOutput = executeSqlFile("../Model/finalExcel.sql",true);
-modifyFirstLineCsv($csvOutput,$dbsAttr);
+modifyFirstLineCsv($csvOutput[0],$dbsAttr);
 //convertToExcel($csvOutput,str_replace("csv","xlsx",$csvOutput));
-header("Location: ../index.php");
+$outt = '..'.$csvOutput[1];
+header("Location: ../View/database.php?file=$outt");
 
 ?>

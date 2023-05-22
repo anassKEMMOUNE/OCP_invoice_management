@@ -1,13 +1,12 @@
 <?php 
-  require_once '../../Model/dbConfig.php';
+  require_once '../Model/dbConfigUser.php';
 ?>
 
-<!DOCTYPE html>
-<html>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<body>
 
 <?php
+  $conn = connectToUserDatabase($_COOKIE['username']);
   $sql = "SELECT nomEntite, COUNT(nomEntite) FROM entite NATURAL JOIN facture GROUP BY nomEntite;";
   $result = $conn->query($sql);
   $xValues = array();
@@ -25,7 +24,7 @@
   $conn->close();
 ?>
 
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="entiteChart" style="width:100%;max-width:600px"></canvas>
 
 <script>
   // generate random color
@@ -48,7 +47,7 @@
   var xValues = <?php echo json_encode($xValues);?>;
   var yValues = <?php echo json_encode($yValues);?>;
 
-  new Chart("myChart", {
+  anass = new Chart("entiteChart", {
     type: "bar",
     data: {
       labels: xValues,
@@ -75,6 +74,3 @@
     }
   });
 </script>
-
-</body>
-</html>

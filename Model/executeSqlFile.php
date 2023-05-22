@@ -1,6 +1,7 @@
 <?php
-function executeSqlFile($sqlFile , $withDir = false):string{
-    require __DIR__.'/dbConfig.php';
+function executeSqlFile($sqlFile , $withDir = false):array{
+    require __DIR__.'/dbConfigUser.php';
+    $conn = connectToUserDatabase($_COOKIE['username']);
     //generating random file name
     $a = rand(111,11111);
     $outPath = "/Exports/csvOut".strval($a).".csv";
@@ -31,8 +32,8 @@ function executeSqlFile($sqlFile , $withDir = false):string{
     // Close the MySQL connection
     $conn->close();
     //echo "\n This the : $outpath";
-    
-    return $StorePath;
+    $arrn =  [$StorePath,$outPath];
+    return $arrn;
 }
 
 ?>

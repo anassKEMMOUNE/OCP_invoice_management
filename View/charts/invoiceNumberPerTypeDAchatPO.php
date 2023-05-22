@@ -1,5 +1,5 @@
 <?php 
-  require_once '../../Model/dbConfig.php';
+  require_once '../Model/dbConfigUser.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,6 +8,8 @@
 <body>
 
 <?php
+  $conn = connectToUserDatabase($_COOKIE['username']);
+
   $sql = "SELECT  SUBSTR(typeDAchatPO, 1, 1) AS typedachatpo, COUNT(*) AS commande_count FROM commande GROUP BY SUBSTR(typeDAchatPO, 1, 1);";
   $result = $conn->query($sql);
   $xValues = array();

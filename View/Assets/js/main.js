@@ -5,21 +5,30 @@
     
     /*==================================================================
     [ Validate ]*/
+
     var input = $('.validate-input .input100');
 
     $('.validate-form').on('submit',function(){
         var check = true;
-
+    
+        // Validate all input fields
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
                 check=false;
             }
         }
-
-        return check;
-    });
-
+    
+        // Check if passwords match
+        var password = $('input[name="password"]').val();
+        var confirmPassword = $('input[name="confirmPassword"]').val();
+        if (password !== confirmPassword) {
+            showValidate($('input[name="confirmPassword"]'));
+            check = false;
+        }
+    
+        return check;
+    });
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
